@@ -18,13 +18,14 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".CreateWallet2Activity"></activity>
         <activity android:name=".CreateWalletActivity" />
+        <activity android:name=".Session.MainActivity" />
         <activity android:name=".RecoverWalletActivity" />
-        <activity android:name=".Session.WelcomeActivity" />
         <activity android:name=".ScanCodeActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".Session.LoginActivity" />
         <activity android:name=".Session.CreataPasswordActivity" />
-        <activity android:name=".Session.MainActivity">
+
+        <activity android:name=".Session.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -2,6 +2,7 @@ package kordoghli.firas.fam_pay.Menu;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -100,9 +101,11 @@ public class SendFragment extends Fragment {
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
+                SharedPreferences sharedPref = getActivity().getSharedPreferences("MyPrefs",0);
+                String addressPref = sharedPref.getString("addressKey","");
+
                 Map<String, String> params = new HashMap<>();
-                params.put("sender", "0x3c817b889fdfd96d8cf39df7f223d8b7cfe2e456");
-                //params.put("receiver", "0xfc7ac96d16000a677f93dbed78232b55dcb46eba");
+                params.put("sender", addressPref);
                 params.put("receiver", reseivAddress.getText().toString());
                 //params.put("amount", "100");
                 params.put("amount", ammount.getText().toString());

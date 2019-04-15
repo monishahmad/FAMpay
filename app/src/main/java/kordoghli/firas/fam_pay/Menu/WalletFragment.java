@@ -1,6 +1,7 @@
 package kordoghli.firas.fam_pay.Menu;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -60,6 +61,9 @@ public class WalletFragment extends Fragment {
                             String balance = obj.getString("balance");
                             wallet = getView().findViewById(R.id.wallet);
                             wallet.setText(balance + " FAM");
+
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -75,8 +79,11 @@ public class WalletFragment extends Fragment {
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
+                SharedPreferences sharedPref = getActivity().getSharedPreferences("MyPrefs",0);
+                String addressPref = sharedPref.getString("addressKey","");
+
                 Map<String, String> params = new HashMap<>();
-                params.put("address", "0xfc7ac96d16000a677f93dbed78232b55dcb46eba");
+                params.put("address", addressPref);
                 return params;
             }
         };

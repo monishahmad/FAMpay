@@ -1,6 +1,7 @@
 package kordoghli.firas.fam_pay.Menu;
 
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -52,6 +53,10 @@ public class ReceiveFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_receive, container, false);
         address = view.findViewById(R.id.receiveAdress);
         qrCode = view.findViewById(R.id.qrCodeImage);
+
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("MyPrefs",0);
+        String addressPref = sharedPref.getString("addressKey","");
+        address.setText(addressPref);
 
         geneteQrcode();
 
