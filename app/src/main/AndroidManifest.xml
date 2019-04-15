@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="kordoghli.firas.fam_pay">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".CreateWallet2Activity"></activity>
+        <activity android:name=".CreateWalletActivity" />
+        <activity android:name=".RecoverWalletActivity" />
+        <activity android:name=".Session.WelcomeActivity" />
+        <activity android:name=".ScanCodeActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".Session.LoginActivity" />
+        <activity android:name=".Session.CreataPasswordActivity" />
+        <activity android:name=".Session.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

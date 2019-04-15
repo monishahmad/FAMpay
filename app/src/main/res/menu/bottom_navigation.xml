@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/wallet"
+        android:icon="@drawable/dollar_symbol"
+        android:title="wallet"/>
+
+    <item
+        android:id="@+id/send"
+        android:icon="@drawable/upload_1"
+        android:title="Send"/>
+
+    <item
+        android:id="@+id/receive"
+        android:icon="@drawable/download"
+        android:title="Receive"/>
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/settings"
+        android:title="Settings"/>
+</menu>
