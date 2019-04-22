@@ -1,7 +1,6 @@
 package kordoghli.firas.fam_pay.Menu;
 
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,6 +21,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import kordoghli.firas.fam_pay.Data.SessionHandler;
 import kordoghli.firas.fam_pay.Data.URLs;
 import kordoghli.firas.fam_pay.Data.VolleySingleton;
 import kordoghli.firas.fam_pay.R;
@@ -33,6 +33,7 @@ import kordoghli.firas.fam_pay.R;
 public class WalletFragment extends Fragment {
 
     TextView wallet;
+    private SessionHandler session;
 
     public WalletFragment() {
         // Required empty public constructor
@@ -44,7 +45,7 @@ public class WalletFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_wallet, container, false);
-
+        session = new SessionHandler(getContext());
         getBalance();
 
         return view;
@@ -61,9 +62,6 @@ public class WalletFragment extends Fragment {
                             String balance = obj.getString("balance");
                             wallet = getView().findViewById(R.id.wallet);
                             wallet.setText(balance + " FAM");
-
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -73,17 +71,12 @@ public class WalletFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                        System.out.println("**************$$$$$error$$$$$$$$$$$$$$$$");
-
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                SharedPreferences sharedPref = getActivity().getSharedPreferences("MyPrefs",0);
-                String addressPref = sharedPref.getString("addressKey","");
-
                 Map<String, String> params = new HashMap<>();
-                params.put("address", addressPref);
+                params.put("address", session.getAddress());
                 return params;
             }
         };

@@ -29,6 +29,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import kordoghli.firas.fam_pay.Data.SessionHandler;
 import kordoghli.firas.fam_pay.Data.URLs;
 import kordoghli.firas.fam_pay.Data.VolleySingleton;
 import kordoghli.firas.fam_pay.R;
@@ -40,6 +41,7 @@ import kordoghli.firas.fam_pay.R;
 public class ReceiveFragment extends Fragment {
     TextView address;
     ImageView qrCode;
+    private SessionHandler session;
 
     public ReceiveFragment() {
         // Required empty public constructor
@@ -53,10 +55,9 @@ public class ReceiveFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_receive, container, false);
         address = view.findViewById(R.id.receiveAdress);
         qrCode = view.findViewById(R.id.qrCodeImage);
+        session = new SessionHandler(getContext());
 
-        SharedPreferences sharedPref = getActivity().getSharedPreferences("MyPrefs",0);
-        String addressPref = sharedPref.getString("addressKey","");
-        address.setText(addressPref);
+        address.setText(session.getAddress());
 
         geneteQrcode();
 

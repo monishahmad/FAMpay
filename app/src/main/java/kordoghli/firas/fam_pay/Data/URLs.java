@@ -5,4 +5,5 @@ public class URLs {
     public static final String URL_GET_BALANCE = ROOT_URL + "getBalance";
     public static final String URL_TRANSACTION = ROOT_URL + "transaction";
     public static final String URL_LOGIN = ROOT_URL + "loginToWallet";
+    public static final String URL_SIGNIN = ROOT_URL + "createAccount";
 }

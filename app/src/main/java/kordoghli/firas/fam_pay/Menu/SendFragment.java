@@ -70,7 +70,9 @@ public class SendFragment extends Fragment {
         transactionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                transaction();
+                if (validateInputs()){
+                    transaction();
+                }
             }
         });
 
@@ -113,6 +115,21 @@ public class SendFragment extends Fragment {
             }
         };
         VolleySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
+    }
+
+    private boolean validateInputs() {
+        if (reseivAddress.getText().toString().equals("")) {
+            reseivAddress.setError("required");
+            reseivAddress.requestFocus();
+            return false;
+        }
+        if (ammount.getText().toString().equals("")) {
+            ammount.setError("required");
+            ammount.requestFocus();
+            return false;
+        }
+
+        return true;
     }
 
 }
