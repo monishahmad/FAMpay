@@ -19,31 +19,9 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                SharedPreferences preferences = getSharedPreferences("PREFS",0);
-                String password = preferences.getString("password","0");
-
-                SharedPreferences preferencesSession = getSharedPreferences("MyPrefs",0);
-                Boolean session = preferencesSession.getBoolean("sessionKey",false);
-
-                if (!session){
-                    Intent intent = new Intent(getApplicationContext(),WelcomeActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-
-                if (password.equals("0")){
-                    Intent intent = new Intent(getApplicationContext(),CreataPasswordActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+                Intent intent = new Intent(getApplicationContext(),WelcomeActivity.class);
+                startActivity(intent);
+                finish();
             }
         },2000);
     }

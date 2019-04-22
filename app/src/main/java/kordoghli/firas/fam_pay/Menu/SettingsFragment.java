@@ -22,16 +22,19 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import kordoghli.firas.fam_pay.Data.SessionHandler;
 import kordoghli.firas.fam_pay.Data.URLs;
 import kordoghli.firas.fam_pay.Data.VolleySingleton;
 import kordoghli.firas.fam_pay.Session.CreataPasswordActivity;
 import kordoghli.firas.fam_pay.R;
+import kordoghli.firas.fam_pay.Session.WelcomeActivity;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SettingsFragment extends Fragment {
+    private SessionHandler session;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -42,12 +45,23 @@ public class SettingsFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
-
+        session=new SessionHandler(getContext());
         TextView changePattern = view.findViewById(R.id.changePattern);
+        TextView logOut = view.findViewById(R.id.logout);
+
         changePattern.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), CreataPasswordActivity.class);
+                SettingsFragment.this.startActivity(intent);
+            }
+        });
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                session.logout();
+                Intent intent = new Intent(getContext(), WelcomeActivity.class);
                 SettingsFragment.this.startActivity(intent);
             }
         });
