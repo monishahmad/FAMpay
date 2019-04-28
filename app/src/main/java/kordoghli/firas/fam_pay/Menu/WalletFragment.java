@@ -1,11 +1,13 @@
 package kordoghli.firas.fam_pay.Menu;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ import kordoghli.firas.fam_pay.Data.SessionHandler;
 import kordoghli.firas.fam_pay.Data.URLs;
 import kordoghli.firas.fam_pay.Data.VolleySingleton;
 import kordoghli.firas.fam_pay.R;
+import kordoghli.firas.fam_pay.cryptocurrency.CryptocurrencyTrackerActivity;
 
 
 /**
@@ -47,6 +50,14 @@ public class WalletFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_wallet, container, false);
         session = new SessionHandler(getContext());
         //getBalance();
+        Button toCoin = view.findViewById(R.id.button6);
+        toCoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CryptocurrencyTrackerActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CreateWallet2Activity"></activity>
+        <activity android:name=".cryptocurrency.CryptocurrencyTrackerActivity"></activity>
+        <activity android:name=".CreateWallet2Activity" />
         <activity android:name=".CreateWalletActivity" />
         <activity android:name=".Session.WelcomeActivity" />
         <activity android:name=".RecoverWalletActivity" />
@@ -24,7 +25,6 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".Session.LoginActivity" />
         <activity android:name=".Session.CreataPasswordActivity" />
-
         <activity android:name=".Session.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -6,4 +6,5 @@ public class URLs {
     public static final String URL_TRANSACTION = ROOT_URL + "transaction";
     public static final String URL_LOGIN = ROOT_URL + "loginToWallet";
     public static final String URL_SIGNIN = ROOT_URL + "createAccount";
+    public static final String URL_COINS_API = "https://api.coinmarketcap.com/v1/ticker/?limit=10";
 }
