@@ -26,10 +26,12 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import kordoghli.firas.fam_pay.Data.SessionHandler;
 import kordoghli.firas.fam_pay.Data.URLs;
 import kordoghli.firas.fam_pay.Data.VolleySingleton;
 import kordoghli.firas.fam_pay.R;
 import kordoghli.firas.fam_pay.ScanCodeActivity;
+import kordoghli.firas.fam_pay.TransactionDialog;
 
 
 /**
@@ -46,6 +48,7 @@ public class SendFragment extends Fragment {
     Button transactionBtn;
     public static EditText reseivAddress;
     EditText ammount;
+    private SessionHandler session;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,7 +56,7 @@ public class SendFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_send, container, false);
-
+        session = new SessionHandler(getContext());
         scanBtn = view.findViewById(R.id.scanBtn);
         transactionBtn = view.findViewById(R.id.transactionBtn);
         reseivAddress = view.findViewById(R.id.ReseivAddress);
@@ -71,7 +74,8 @@ public class SendFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (validateInputs()){
-                    transaction();
+                    //transaction();
+                    openDialog();
                 }
             }
         });
@@ -103,11 +107,9 @@ public class SendFragment extends Fragment {
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                SharedPreferences sharedPref = getActivity().getSharedPreferences("MyPrefs",0);
-                String addressPref = sharedPref.getString("addressKey","");
 
                 Map<String, String> params = new HashMap<>();
-                params.put("sender", addressPref);
+                params.put("sender", session.getAddress());
                 params.put("receiver", reseivAddress.getText().toString());
                 //params.put("amount", "100");
                 params.put("amount", ammount.getText().toString());
@@ -130,6 +132,15 @@ public class SendFragment extends Fragment {
         }
 
         return true;
+    }
+
+    public void openDialog(){
+        Bundle args = new Bundle();
+        args.putString("address", reseivAddress.getText().toString());
+        args.putString("amount", ammount.getText().toString());
+        TransactionDialog transactionDialog = new TransactionDialog();
+        transactionDialog.setArguments(args);
+        transactionDialog.show(getFragmentManager(),"transaction dialog");
     }
 
 }

@@ -46,7 +46,7 @@ public class WalletFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_wallet, container, false);
         session = new SessionHandler(getContext());
-        getBalance();
+        //getBalance();
 
         return view;
     }
