@@ -54,6 +54,7 @@ public class CryptocurrencyTrackerActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        ArrayList<CoinItem> coinItems = new ArrayList<>();
                         for (int i = 0; i < response.length(); i++) {
                             try {
                                 JSONObject coin =response.getJSONObject(i);
@@ -67,22 +68,23 @@ public class CryptocurrencyTrackerActivity extends AppCompatActivity {
                                         coin.getString("percent_change_7d")
                                 );
 
-                                ArrayList<CoinItem> coinItems = new ArrayList<>();
+
                                 coinItems.add(coinItem);
-                                System.out.println(coinItems);
+                                System.out.println(coinItems.toString());
 
-                                mRecyclerView = findViewById(R.id.recycleView);
-                                mRecyclerView.setHasFixedSize(true);
-                                mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                                mAdapter = new CoinAdapter(coinItems);
 
-                                mRecyclerView.setLayoutManager(mLayoutManager);
-                                mRecyclerView.setAdapter(mAdapter);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
+                        mRecyclerView = findViewById(R.id.recycleView);
+                        mRecyclerView.setHasFixedSize(true);
+                        mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        mAdapter = new CoinAdapter(coinItems);
+
+                        mRecyclerView.setLayoutManager(mLayoutManager);
+                        mRecyclerView.setAdapter(mAdapter);
                     }
                 }, new Response.ErrorListener() {
             @Override
