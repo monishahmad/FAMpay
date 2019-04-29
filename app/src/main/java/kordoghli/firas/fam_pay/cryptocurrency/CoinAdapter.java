@@ -1,5 +1,6 @@
 package kordoghli.firas.fam_pay.cryptocurrency;
 
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -47,7 +48,10 @@ public class CoinAdapter extends RecyclerView.Adapter<CoinAdapter.CoinViewHolder
     @Override
     public void onBindViewHolder(@NonNull CoinViewHolder coinViewHolder, int i) {
         CoinItem coinItem = mCoinList.get(i);
+        Resources resources = coinViewHolder.itemView.getContext().getResources();
+        int id = resources.getIdentifier("kordoghli.firas.fam_pay:drawable/" + coinItem.getSymbol().toLowerCase(), null, null);
 
+        coinViewHolder.coinIcon.setImageResource(id);
         coinViewHolder.coinName.setText(coinItem.getName());
         coinViewHolder.coinSymbol.setText(coinItem.getSymbol());
         coinViewHolder.coinPrice.setText(coinItem.getPrice_usd());
