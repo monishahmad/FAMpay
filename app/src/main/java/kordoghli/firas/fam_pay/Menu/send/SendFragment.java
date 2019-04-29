@@ -1,11 +1,9 @@
-package kordoghli.firas.fam_pay.Menu;
+package kordoghli.firas.fam_pay.Menu.send;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +28,6 @@ import kordoghli.firas.fam_pay.Data.SessionHandler;
 import kordoghli.firas.fam_pay.Data.URLs;
 import kordoghli.firas.fam_pay.Data.VolleySingleton;
 import kordoghli.firas.fam_pay.R;
-import kordoghli.firas.fam_pay.ScanCodeActivity;
-import kordoghli.firas.fam_pay.TransactionDialog;
 
 
 /**
@@ -40,22 +36,22 @@ import kordoghli.firas.fam_pay.TransactionDialog;
 public class SendFragment extends Fragment {
 
 
+    public static EditText reseivAddress;
+    ImageButton scanBtn;
+    Button transactionBtn;
+    EditText ammount;
+    private SessionHandler session;
+
     public SendFragment() {
         // Required empty public constructor
     }
-
-    ImageButton scanBtn;
-    Button transactionBtn;
-    public static EditText reseivAddress;
-    EditText ammount;
-    private SessionHandler session;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_send, container, false);
+        View view = inflater.inflate(R.layout.fragment_send, container, false);
         session = new SessionHandler(getContext());
         scanBtn = view.findViewById(R.id.scanBtn);
         transactionBtn = view.findViewById(R.id.transactionBtn);
@@ -73,16 +69,17 @@ public class SendFragment extends Fragment {
         transactionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validateInputs()){
+                if (validateInputs()) {
                     //transaction();
-                    openDialog();
+                    //openDialog();
+                    transaction();
                 }
             }
         });
 
         return view;
     }
-
+/*
     void transaction() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_TRANSACTION,
                 new Response.Listener<String>() {
@@ -117,6 +114,44 @@ public class SendFragment extends Fragment {
             }
         };
         VolleySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
+    }*/
+
+    void transaction() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_VALIDATE_ADRESS,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            boolean resulta = obj.getBoolean("resultat");
+                            int ammountInt = Integer.parseInt(ammount.getText().toString());
+                            double tranAmmount = ammountInt + ammountInt * 0.01 ;
+                            if (!resulta) {
+                                openAccountDialog();
+                            } else if (session.getBalance()-tranAmmount<0) {
+                                openBalanceDialog();
+                            }else {
+                                openDialog();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "response error", Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("address", reseivAddress.getText().toString());
+                return params;
+            }
+        };
+        VolleySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
 
     private boolean validateInputs() {
@@ -134,13 +169,23 @@ public class SendFragment extends Fragment {
         return true;
     }
 
-    public void openDialog(){
+    public void openDialog() {
         Bundle args = new Bundle();
         args.putString("address", reseivAddress.getText().toString());
         args.putString("amount", ammount.getText().toString());
         TransactionDialog transactionDialog = new TransactionDialog();
         transactionDialog.setArguments(args);
-        transactionDialog.show(getFragmentManager(),"transaction dialog");
+        transactionDialog.show(getFragmentManager(), "transaction dialog");
+    }
+
+    public void openBalanceDialog() {
+        TransanctionBalanceDialog transanctionBalanceDialog = new TransanctionBalanceDialog();
+        transanctionBalanceDialog.show(getFragmentManager(), "transaction balance dialog");
+    }
+
+    public void openAccountDialog() {
+        TransactionAccountDialog transactionAccountDialog = new TransactionAccountDialog();
+        transactionAccountDialog.show(getFragmentManager(), "transaction account dialog");
     }
 
 }

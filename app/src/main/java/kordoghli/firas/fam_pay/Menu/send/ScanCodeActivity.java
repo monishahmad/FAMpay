@@ -1,11 +1,11 @@
-package kordoghli.firas.fam_pay;
+package kordoghli.firas.fam_pay.Menu.send;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.google.zxing.Result;
 
-import kordoghli.firas.fam_pay.Menu.SendFragment;
+import kordoghli.firas.fam_pay.Menu.send.SendFragment;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {

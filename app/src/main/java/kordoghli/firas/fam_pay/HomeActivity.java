@@ -7,10 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import kordoghli.firas.fam_pay.Menu.ReceiveFragment;
-import kordoghli.firas.fam_pay.Menu.SendFragment;
-import kordoghli.firas.fam_pay.Menu.SettingsFragment;
-import kordoghli.firas.fam_pay.Menu.WalletFragment;
+import kordoghli.firas.fam_pay.Menu.receive.ReceiveFragment;
+import kordoghli.firas.fam_pay.Menu.send.SendFragment;
+import kordoghli.firas.fam_pay.Menu.settings.SettingsFragment;
+import kordoghli.firas.fam_pay.Menu.wallet.WalletFragment;
 
 public class HomeActivity extends AppCompatActivity {
 

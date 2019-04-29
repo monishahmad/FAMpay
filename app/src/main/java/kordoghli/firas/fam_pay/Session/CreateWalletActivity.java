@@ -1,4 +1,4 @@
-package kordoghli.firas.fam_pay;
+package kordoghli.firas.fam_pay.Session;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import kordoghli.firas.fam_pay.Data.SessionHandler;
-import kordoghli.firas.fam_pay.Session.CreataPasswordActivity;
+import kordoghli.firas.fam_pay.R;
 
 public class CreateWalletActivity extends AppCompatActivity {
     String address;

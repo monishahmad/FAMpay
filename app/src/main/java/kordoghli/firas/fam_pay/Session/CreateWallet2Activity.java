@@ -1,4 +1,4 @@
-package kordoghli.firas.fam_pay;
+package kordoghli.firas.fam_pay.Session;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,9 +20,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import kordoghli.firas.fam_pay.Data.SessionHandler;
 import kordoghli.firas.fam_pay.Data.URLs;
 import kordoghli.firas.fam_pay.Data.VolleySingleton;
+import kordoghli.firas.fam_pay.R;
 
 public class CreateWallet2Activity extends AppCompatActivity {
     EditText password;

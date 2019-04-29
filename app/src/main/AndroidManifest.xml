@@ -17,11 +17,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".cryptocurrency.CryptocurrencyTrackerActivity"></activity>
-        <activity android:name=".CreateWallet2Activity" />
-        <activity android:name=".CreateWalletActivity" />
+        <activity android:name=".Session.CreateWallet2Activity" />
+        <activity android:name=".Session.CreateWalletActivity" />
         <activity android:name=".Session.WelcomeActivity" />
-        <activity android:name=".RecoverWalletActivity" />
-        <activity android:name=".ScanCodeActivity" />
+        <activity android:name=".Session.RecoverWalletActivity" />
+        <activity android:name=".Menu.send.ScanCodeActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".Session.LoginActivity" />
         <activity android:name=".Session.CreataPasswordActivity" />

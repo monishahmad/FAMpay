@@ -9,6 +9,7 @@ public class SessionHandler {
 
     private static final String PREF_NAME = "UserSession";
     private static final String KEY_ADDRESS = "address";
+    private static final String KEY_BALANCE = "balance";
     private static final String KEY_EXPIRES = "expires";
     private static final String KEY_EMPTY = "";
 
@@ -24,11 +25,15 @@ public class SessionHandler {
 
     public void login (String address){
         mEditor.putString(KEY_ADDRESS,address);
-
         Date date = new Date();
         //Set user session for next 7 days
         long millis = date.getTime() + (7 * 24 * 60 * 60 * 1000);
         mEditor.putLong(KEY_EXPIRES, millis);
+        mEditor.commit();
+    }
+
+    public void saveBalance (int balance){
+        mEditor.putInt(KEY_BALANCE,balance);
         mEditor.commit();
     }
 
@@ -56,6 +61,14 @@ public class SessionHandler {
             return null;
         }
         return mPreferences.getString(KEY_ADDRESS,KEY_EMPTY);
+    }
+
+    public Integer getBalance(){
+        //Check if user is logged in first
+        if (!isLoggedIn()) {
+            return null;
+        }
+        return mPreferences.getInt(KEY_BALANCE,0);
     }
 
     public void logout(){

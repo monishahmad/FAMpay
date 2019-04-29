@@ -1,4 +1,4 @@
-package kordoghli.firas.fam_pay.Menu;
+package kordoghli.firas.fam_pay.Menu.receive;
 
 
 import android.content.SharedPreferences;

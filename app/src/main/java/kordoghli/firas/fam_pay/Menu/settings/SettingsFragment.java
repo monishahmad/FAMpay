@@ -1,4 +1,4 @@
-package kordoghli.firas.fam_pay.Menu;
+package kordoghli.firas.fam_pay.Menu.settings;
 
 
 import android.content.Intent;
@@ -8,23 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import kordoghli.firas.fam_pay.Data.SessionHandler;
-import kordoghli.firas.fam_pay.Data.URLs;
-import kordoghli.firas.fam_pay.Data.VolleySingleton;
 import kordoghli.firas.fam_pay.Session.CreataPasswordActivity;
 import kordoghli.firas.fam_pay.R;
 import kordoghli.firas.fam_pay.Session.WelcomeActivity;

@@ -1,5 +1,6 @@
 package kordoghli.firas.fam_pay.cryptocurrency;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,11 +20,13 @@ import java.util.ArrayList;
 import kordoghli.firas.fam_pay.Data.URLs;
 import kordoghli.firas.fam_pay.Data.VolleySingleton;
 import kordoghli.firas.fam_pay.R;
+import kordoghli.firas.fam_pay.Session.RecoverWalletActivity;
 
 public class CryptocurrencyTrackerActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +48,17 @@ public class CryptocurrencyTrackerActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 */
+        displayLoader();
         getCoin();
     }
-
+    private void displayLoader() {
+        pDialog = new ProgressDialog(CryptocurrencyTrackerActivity.this);
+        pDialog.setMessage("Please wait...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+    }
     void getCoin() {
-
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, URLs.URL_COINS_API, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -67,13 +76,7 @@ public class CryptocurrencyTrackerActivity extends AppCompatActivity {
                                         coin.getString("percent_change_24h"),
                                         coin.getString("percent_change_7d")
                                 );
-
-
                                 coinItems.add(coinItem);
-                                System.out.println(coinItems.toString());
-
-
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -82,9 +85,9 @@ public class CryptocurrencyTrackerActivity extends AppCompatActivity {
                         mRecyclerView.setHasFixedSize(true);
                         mLayoutManager = new LinearLayoutManager(getApplicationContext());
                         mAdapter = new CoinAdapter(coinItems);
-
                         mRecyclerView.setLayoutManager(mLayoutManager);
                         mRecyclerView.setAdapter(mAdapter);
+                        pDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override

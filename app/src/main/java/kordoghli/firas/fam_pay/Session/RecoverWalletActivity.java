@@ -1,4 +1,4 @@
-package kordoghli.firas.fam_pay;
+package kordoghli.firas.fam_pay.Session;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -26,7 +26,7 @@ import java.util.Map;
 import kordoghli.firas.fam_pay.Data.SessionHandler;
 import kordoghli.firas.fam_pay.Data.URLs;
 import kordoghli.firas.fam_pay.Data.VolleySingleton;
-import kordoghli.firas.fam_pay.Session.CreataPasswordActivity;
+import kordoghli.firas.fam_pay.R;
 
 public class RecoverWalletActivity extends AppCompatActivity {
     Button login;

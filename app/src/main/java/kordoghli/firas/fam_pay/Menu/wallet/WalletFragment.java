@@ -1,4 +1,4 @@
-package kordoghli.firas.fam_pay.Menu;
+package kordoghli.firas.fam_pay.Menu.wallet;
 
 
 import android.content.Intent;
@@ -49,7 +49,7 @@ public class WalletFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_wallet, container, false);
         session = new SessionHandler(getContext());
-        //getBalance();
+        getBalance();
         Button toCoin = view.findViewById(R.id.button6);
         toCoin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +71,7 @@ public class WalletFragment extends Fragment {
                             //converting response to json object
                             JSONObject obj = new JSONObject(response);
                             String balance = obj.getString("balance");
+                            session.saveBalance(Integer.parseInt(balance));
                             wallet = getView().findViewById(R.id.wallet);
                             wallet.setText(balance + " FAM");
                         } catch (JSONException e) {
@@ -93,5 +94,7 @@ public class WalletFragment extends Fragment {
         };
         VolleySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
+
+
 
 }
