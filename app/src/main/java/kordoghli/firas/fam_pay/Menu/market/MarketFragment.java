@@ -1,10 +1,14 @@
-package kordoghli.firas.fam_pay.cryptocurrency;
+package kordoghli.firas.fam_pay.Menu.market;
+
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -20,28 +24,40 @@ import java.util.ArrayList;
 import kordoghli.firas.fam_pay.Data.URLs;
 import kordoghli.firas.fam_pay.Data.VolleySingleton;
 import kordoghli.firas.fam_pay.R;
-import kordoghli.firas.fam_pay.Session.RecoverWalletActivity;
 
-public class CryptocurrencyTrackerActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class MarketFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ProgressDialog pDialog;
 
+
+    public MarketFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cryptocurrency_tracker);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_market, container, false);
         displayLoader();
         getCoin();
+        return view;
     }
+
     private void displayLoader() {
-        pDialog = new ProgressDialog(CryptocurrencyTrackerActivity.this);
+        pDialog = new ProgressDialog(getContext());
         pDialog.setMessage("Please wait...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
         pDialog.show();
     }
+
     void getCoin() {
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, URLs.URL_COINS_API, null,
                 new Response.Listener<JSONArray>() {
@@ -65,9 +81,9 @@ public class CryptocurrencyTrackerActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
-                        mRecyclerView = findViewById(R.id.recycleView);
+                        mRecyclerView = getView().findViewById(R.id.recycleView);
                         mRecyclerView.setHasFixedSize(true);
-                        mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        mLayoutManager = new LinearLayoutManager(getContext());
                         mAdapter = new CoinAdapter(coinItems);
                         mRecyclerView.setLayoutManager(mLayoutManager);
                         mRecyclerView.setAdapter(mAdapter);
@@ -79,8 +95,7 @@ public class CryptocurrencyTrackerActivity extends AppCompatActivity {
 
             }
         });
-        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
+        VolleySingleton.getInstance(getContext()).addToRequestQueue(request);
     }
-
 
 }

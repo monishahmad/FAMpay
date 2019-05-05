@@ -16,7 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".cryptocurrency.CryptocurrencyTrackerActivity"></activity>
         <activity android:name=".Session.CreateWallet2Activity" />
         <activity android:name=".Session.CreateWalletActivity" />
         <activity android:name=".Session.WelcomeActivity" />
@@ -33,5 +32,7 @@
             </intent-filter>
         </activity>
     </application>
+
+
 
 </manifest>

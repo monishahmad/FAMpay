@@ -14,6 +14,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:text="0xfc7ac96d16000a677f93dbed78232b55dcb46eba"
+        android:textIsSelectable="true"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="15dp"

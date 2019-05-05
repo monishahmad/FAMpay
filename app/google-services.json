@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "154722849120",
+    "firebase_url": "https://fam-pay.firebaseio.com",
+    "project_id": "fam-pay",
+    "storage_bucket": "fam-pay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154722849120:android:bba322b77160bc83",
+        "android_client_info": {
+          "package_name": "kordoghli.firas.fam_pay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154722849120-kbqlp10c0sqdsnds4outmsl31eag0hir.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kordoghli.firas.fam_pay",
+            "certificate_hash": "10f1b2a80aad06650c4a7f88dae11b468d0b6c45"
+          }
+        },
+        {
+          "client_id": "154722849120-spn5jb78034vfi92r1jf2vit9u7j1il5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6eVn3E0fRvmL4RcpcOGg2-6AqiN1rbpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154722849120-spn5jb78034vfi92r1jf2vit9u7j1il5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

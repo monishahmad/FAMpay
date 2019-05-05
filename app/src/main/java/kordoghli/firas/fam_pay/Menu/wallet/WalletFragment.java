@@ -1,7 +1,6 @@
 package kordoghli.firas.fam_pay.Menu.wallet;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +29,6 @@ import kordoghli.firas.fam_pay.Data.SessionHandler;
 import kordoghli.firas.fam_pay.Data.URLs;
 import kordoghli.firas.fam_pay.Data.VolleySingleton;
 import kordoghli.firas.fam_pay.R;
-import kordoghli.firas.fam_pay.cryptocurrency.CryptocurrencyTrackerActivity;
 
 
 /**
@@ -59,16 +56,6 @@ public class WalletFragment extends Fragment {
         session = new SessionHandler(getContext());
         getBalance();
         getHistoricTransaction();
-        //Button toCoin = view.findViewById(R.id.button6);
-        ImageButton toCoin = view.findViewById(R.id.imageButton);
-        toCoin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), CryptocurrencyTrackerActivity.class);
-                startActivity(intent);
-            }
-        });
-
         return view;
     }
 
@@ -127,7 +114,7 @@ public class WalletFragment extends Fragment {
                             }
                             mRecyclerView = getView().findViewById(R.id.recycleViewTransaction);
                             mLayoutManager = new LinearLayoutManager(getContext());
-                            mAdapter = new TransactionAdapter(transactionItems,getContext());
+                            mAdapter = new TransactionAdapter(transactionItems, getContext());
                             mRecyclerView.setLayoutManager(mLayoutManager);
                             mRecyclerView.setAdapter(mAdapter);
                         } catch (JSONException e) {

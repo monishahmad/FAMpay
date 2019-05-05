@@ -98,7 +98,9 @@ public class RecoverWalletActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        pDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "response error", Toast.LENGTH_SHORT).show();
+
                     }
                 }) {
             @Override

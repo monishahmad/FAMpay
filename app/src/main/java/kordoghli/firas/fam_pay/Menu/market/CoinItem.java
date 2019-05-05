@@ -1,4 +1,4 @@
-package kordoghli.firas.fam_pay.cryptocurrency;
+package kordoghli.firas.fam_pay.Menu.market;
 
 public class CoinItem {
     private String id,name,symbol,price_usd,percent_change_1h,percent_change_24h,percent_change_7d;

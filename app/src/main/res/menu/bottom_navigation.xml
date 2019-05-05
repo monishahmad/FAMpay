@@ -16,7 +16,12 @@
         android:icon="@drawable/download"
         android:title="Receive"/>
     <item
-        android:id="@+id/settings"
-        android:icon="@drawable/settings"
-        android:title="Settings"/>
+        android:id="@+id/market"
+        android:icon="@drawable/stats_2"
+        android:title="Market"/>
+    <item
+    android:id="@+id/settings"
+    android:icon="@drawable/settings"
+    android:title="Settings"/>
+
 </menu>
