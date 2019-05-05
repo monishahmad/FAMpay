@@ -32,22 +32,6 @@ public class CryptocurrencyTrackerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cryptocurrency_tracker);
-/*
-        ArrayList<CoinItem> coinItems = new ArrayList<>();
-
-        coinItems.add(new CoinItem("bitcoin", "Bitcoin", "BTC", "5297.3290772", "-0.23", "0.36", "0.22"));
-        coinItems.add(new CoinItem("bitcoin", "Bitcoin", "BTC", "5297.3290772", "-0.23", "0.36", "0.22"));
-        coinItems.add(new CoinItem("bitcoin", "Bitcoin", "BTC", "5297.3290772", "-0.23", "0.36", "0.22"));
-        coinItems.add(new CoinItem("bitcoin", "Bitcoin", "BTC", "5297.3290772", "-0.23", "0.36", "0.22"));
-
-        mRecyclerView = findViewById(R.id.recycleView);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new CoinAdapter(coinItems);
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
-*/
         displayLoader();
         getCoin();
     }

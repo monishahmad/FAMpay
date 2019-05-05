@@ -100,6 +100,7 @@ public class TransactionDialog extends AppCompatDialogFragment {
                             if (!obj.getBoolean("response")) {
                                 password.setError("wrong password");
                                 password.requestFocus();
+                                pDialog.dismiss();
                             } else {
                                 //Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
                                 //getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
