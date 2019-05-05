@@ -49,7 +49,6 @@ public class SendFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_send, container, false);
         session = new SessionHandler(getContext());
@@ -65,56 +64,16 @@ public class SendFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         transactionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validateInputs()) {
-                    //transaction();
-                    //openDialog();
                     transaction();
                 }
             }
         });
-
         return view;
     }
-/*
-    void transaction() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_TRANSACTION,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            //converting response to json object
-                            JSONObject obj = new JSONObject(response);
-                            String txHash = obj.getString("txHash");
-                            Toast.makeText(getContext(), txHash, Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "response error", Toast.LENGTH_SHORT).show();
-
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-                Map<String, String> params = new HashMap<>();
-                params.put("sender", session.getAddress());
-                params.put("receiver", reseivAddress.getText().toString());
-                //params.put("amount", "100");
-                params.put("amount", ammount.getText().toString());
-                return params;
-            }
-        };
-        VolleySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
-    }*/
 
     void transaction() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_VALIDATE_ADRESS,
@@ -125,12 +84,12 @@ public class SendFragment extends Fragment {
                             JSONObject obj = new JSONObject(response);
                             boolean resulta = obj.getBoolean("resultat");
                             int ammountInt = Integer.parseInt(ammount.getText().toString());
-                            double tranAmmount = ammountInt + ammountInt * 0.01 ;
+                            double tranAmmount = ammountInt + ammountInt * 0.01;
                             if (!resulta) {
                                 openAccountDialog();
-                            } else if (session.getBalance()-tranAmmount<0) {
+                            } else if (session.getBalance() - tranAmmount < 0) {
                                 openBalanceDialog();
-                            }else {
+                            } else {
                                 openDialog();
                             }
                         } catch (JSONException e) {

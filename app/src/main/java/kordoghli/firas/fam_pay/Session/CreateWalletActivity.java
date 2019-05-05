@@ -1,11 +1,15 @@
 package kordoghli.firas.fam_pay.Session;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import kordoghli.firas.fam_pay.Data.SessionHandler;
 import kordoghli.firas.fam_pay.R;
@@ -15,6 +19,7 @@ public class CreateWalletActivity extends AppCompatActivity {
     Button createAccount;
     TextView addressTv;
     private SessionHandler session;
+    ClipboardManager clipboardManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,10 @@ public class CreateWalletActivity extends AppCompatActivity {
         addressTv.setText(address);
 
         createAccount = findViewById(R.id.toPattern);
+/*
+        clipboardManager.setText(address);
+        Toast.makeText(CreateWalletActivity.this,"copied to clipboard", Toast.LENGTH_LONG).show();*/
+
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

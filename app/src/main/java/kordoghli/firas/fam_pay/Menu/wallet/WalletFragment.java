@@ -127,10 +127,9 @@ public class WalletFragment extends Fragment {
                             }
                             mRecyclerView = getView().findViewById(R.id.recycleViewTransaction);
                             mLayoutManager = new LinearLayoutManager(getContext());
-                            mAdapter = new TransactionAdapter(transactionItems);
+                            mAdapter = new TransactionAdapter(transactionItems,getContext());
                             mRecyclerView.setLayoutManager(mLayoutManager);
                             mRecyclerView.setAdapter(mAdapter);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

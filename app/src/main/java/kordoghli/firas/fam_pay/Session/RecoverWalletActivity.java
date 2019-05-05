@@ -61,7 +61,7 @@ public class RecoverWalletActivity extends AppCompatActivity {
     }
 
     void login() {
-        //displayLoader();
+        displayLoader();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_LOGIN,
                 new Response.Listener<String>() {
                     @Override
@@ -76,7 +76,8 @@ public class RecoverWalletActivity extends AppCompatActivity {
                                 Intent intent = new Intent(RecoverWalletActivity.this, CreataPasswordActivity.class);
                                 startActivity(intent);
 
-                            } else if (resp == false) {
+                            } else if (!resp) {
+                                pDialog.dismiss();
                                 AlertDialog alertDialog = new AlertDialog.Builder(RecoverWalletActivity.this).create(); //Read Update
                                 alertDialog.setTitle("Sorry");
                                 alertDialog.setMessage("please check your address and password and try again");

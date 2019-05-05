@@ -69,11 +69,9 @@ public class CreateWallet2Activity extends AppCompatActivity {
                             //converting response to json object
                             JSONObject obj = new JSONObject(response);
                             String adresse = obj.getString("adresse");
-                            //session.login(adresse);
                             Intent intent = new Intent(CreateWallet2Activity.this, CreateWalletActivity.class);
                             intent.putExtra("public_address",adresse);
                             startActivity(intent);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -82,6 +80,7 @@ public class CreateWallet2Activity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        pDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "response error", Toast.LENGTH_SHORT).show();
                     }
                 }) {

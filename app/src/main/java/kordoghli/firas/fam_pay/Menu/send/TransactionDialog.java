@@ -29,9 +29,7 @@ import kordoghli.firas.fam_pay.Data.SessionHandler;
 import kordoghli.firas.fam_pay.Data.URLs;
 import kordoghli.firas.fam_pay.Data.VolleySingleton;
 import kordoghli.firas.fam_pay.HomeActivity;
-import kordoghli.firas.fam_pay.Menu.wallet.WalletFragment;
 import kordoghli.firas.fam_pay.R;
-import kordoghli.firas.fam_pay.cryptocurrency.CryptocurrencyTrackerActivity;
 
 public class TransactionDialog extends AppCompatDialogFragment {
     EditText password;
@@ -102,8 +100,6 @@ public class TransactionDialog extends AppCompatDialogFragment {
                                 password.requestFocus();
                                 pDialog.dismiss();
                             } else {
-                                //Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
-                                //getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, new WalletFragment()).commit();
                                 pDialog.dismiss();
                                 Intent intent = new Intent(getContext(), HomeActivity.class);
                                 startActivity(intent);
