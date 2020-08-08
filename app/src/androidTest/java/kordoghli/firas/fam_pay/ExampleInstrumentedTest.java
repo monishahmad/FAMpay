@@ -1,4 +1,4 @@
-package kordoghli.firas.fam_pay;
+package kordoghli.firas.fampay:--
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
